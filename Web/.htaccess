@@ -1,0 +1,18 @@
+RewriteEngine on
+
+RewriteRule (Web/.*) $1 [L]
+RewriteRule (Views/.*) $1 [L]
+RewriteRule (Models/.*) $1 [L]
+RewriteRule (Controllers/.*) $1 [L]
+RewriteRule (Config/.*) $1 [L]
+
+RewriteRule ^blog$ /?page=blog&action=list&id=1
+RewriteRule ^blog/add$ /?page=blog&action=add
+RewriteRule ^blog/page/([0-9]+)$ /?page=blog&action=list&id=$1
+RewriteRule ^blog/article/([0-9]+)$ /?page=blog&action=view&id=$1
+RewriteRule ^blog/edit/article-([0-9]+)$ /?page=blog&action=edit&id=$1
+RewriteRule ^blog/delete/([0-9]+)$ /?page=blog&action=delete&id=$1
+RewriteRule ^contact$ /?page=contact
+
+
+ErrorDocument 404 /?page=error
