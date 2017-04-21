@@ -48,7 +48,7 @@ class BlogRepository
             'chapo' => $chapo,
             'date' => $date,
         ));
-        return;
+        return true;
     }
 
     public function editArticle($id)
@@ -71,7 +71,7 @@ class BlogRepository
             'date' => $date,
             'chapo' => $chapo,
         ));
-        return;
+        return true;
     }
 
     public function deleteArticle($id)
