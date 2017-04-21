@@ -34,6 +34,7 @@ class Contact extends Controller
 
     public function indexAction()
     {
+        $valid = '';
         $services = new Form();
         if ($services->mailIsValid()) {
             $nom = htmlspecialchars($_POST['nom']);
@@ -56,9 +57,11 @@ class Contact extends Controller
                     </html>
             ";
             mail(TO, SUBJECT, $text, $headers);
+            $valid = 'succes';
         }
         return $this->twig->render('contact/contact.twig', array(
             "token" => $this->token,
+            'valid' => $valid,
         ));
     }
 }
