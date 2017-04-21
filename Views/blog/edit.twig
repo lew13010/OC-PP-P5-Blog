@@ -1,0 +1,48 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+    <div class="intro-text">
+        <span class="name">Éditer un post</span>
+        <hr class="star-light">
+    </div>
+    <div class="col-md-6 col-md-offset-3">
+        {% if valid == "succes" %}
+            <div class="alert alert-success" role="alert">Article modifié avec succès.</div>
+        {% elseif valid == "fault" %}
+            <div class="alert alert-danger" role="alert">L'Article n'a pas pu être modifié avec succès.</div>
+        {% endif %}
+        <form action="" method="post" class="form-horizontal">
+
+            <div class="form-group">
+                <label for="titre" class="col-sm-2 control-label">Titre*</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="titre" name="titre" value="{{ article['titre'] }}" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="auteur" class="col-sm-2 control-label">Auteur*</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="auteur" name="auteur" value="{{ article['auteur'] }}"required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="chapo" class="col-sm-2 control-label">Description Courte</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="chapo" name="chapo" value="{{ article['chapo'] }}" maxlength="100">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="message" class="col-sm-2 control-label">Description*</label>
+                <div class="col-sm-10">
+                    <textarea class="form-control" id="message" name="message" rows="5"  required>{{ article['contenu'] }}</textarea>
+                </div>
+            </div>
+            <input type="hidden" name="token" value="{{ token }}">
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" name="submit" class="btn btn-default">Envoyer</button>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}

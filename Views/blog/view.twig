@@ -1,0 +1,45 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+    <div class="intro-text">
+        {% if article %}
+            <span class="name">{{ article['titre']|upper }}</span>
+            <p>Auteur : <b>{{ article['auteur'] }}</b> - Date de publication : <b>{{ article['date']|date("d/m/Y") }}</b></p>
+            <p>{{ article['chapo'] }}</p>
+            <hr class="star-light">
+            <p>{{ article['contenu'] }}</p>
+
+            <hr class="star-light">
+            <div class="btn-group" role="group" aria-label="edit">
+                    <a href="/blog/edit/article-{{ article['id'] }}" class="btn btn-default" style="color: black !important;" aria-label="edit">Editer</a>
+                    <a href="#" type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal" aria-label="edit">Supprimer</a>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel" style="color: black !important;">Suppression Article</h4>
+                        </div>
+                        <div class="modal-body" style="color: black !important;">
+                            Voulez-vous vraiment supprimer l'article : <b>{{ article['titre']|upper }}</b> ?
+                        </div>
+                        <div class="modal-footer">
+                            <form action="/blog/delete/{{ article['id'] }}">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                                <input type="hidden" value="{{ token }}">
+                                <button type="submit" class="btn btn-danger">Supprimer</button>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <span class="name">L'article demandé n'existe pas.</span>
+            <hr class="star-light">
+        {% endif %}
+    </div>
+{% endblock %}
