@@ -93,7 +93,7 @@ class Blog extends Controller
         $services = new Form();
         $repo = new BlogRepository($this->bdd);
         if ($services->formIsValid()) {
-            if($repo->editArticle($this->bdd)){
+            if($repo->editArticle($this->id)){
                 $valid = 'succes';
             }
             else{
